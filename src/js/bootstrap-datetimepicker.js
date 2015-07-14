@@ -1,5 +1,13 @@
 /*! version : 4.14.30
  =========================================================
+ Be careful! This is a FORK of the below script.
+ To correctly upcate/modify this file, you should:
+ 1. Clone the https://github.com/sylvix/bootstrap-datetimepicker
+ 2. Sync this fork with upstream (https://help.github.com/articles/syncing-a-fork/)
+ 3. Build
+ 4. Copy minified js to this project
+ Or, if upstream has already implemented the "widgetClass" feature, use can just use that version instead.
+ =========================================================
  bootstrap-datetimejs
  https://github.com/Eonasdan/bootstrap-datetimepicker
  Copyright (c) 2015 Jonathan Peterson
@@ -305,6 +313,10 @@
                     timeView = $('<div>').addClass('timepicker').append(getTimePickerTemplate()),
                     content = $('<ul>').addClass('list-unstyled'),
                     toolbar = $('<li>').addClass('picker-switch' + (options.collapse ? ' accordion-toggle' : '')).append(getToolbar());
+
+                if (options.widgetClass) {
+                    template.addClass(options.widgetClass);
+                }
 
                 if (options.inline) {
                     template.removeClass('dropdown-menu');
@@ -2218,6 +2230,19 @@
 
             viewDate = parseInputDate(newDate);
             viewUpdate();
+            return picker;
+        };
+
+        picker.widgetClass = function (widgetClass) {
+            if (arguments.length === 0) {
+                return options.widgetClass;
+            }
+
+            if (typeof widgetClass !== 'string') {
+                throw new TypeError('widgetClass() expects a string!');
+            }
+
+            options.widgetClass = widgetClass;
             return picker;
         };
 

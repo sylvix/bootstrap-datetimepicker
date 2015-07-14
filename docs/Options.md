@@ -427,3 +427,14 @@ Will allow or disallow hour selections (much like `disabledTimeIntervals`) but w
 	Default: false
 
 This will change the `viewDate` without changing or setting the selected date.
+
+----------------------
+
+
+### widgetClass
+
+<small>INSERT VERSION HERE</small>
+
+	Default: undefined
+
+Adds specified class to the widget div. You can specify several additional classes divided by spaces.

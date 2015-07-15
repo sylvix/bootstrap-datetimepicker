@@ -442,12 +442,14 @@
                     throw new Error('datetimepicker component should be placed within a relative positioned container');
                 }
 
-                widget.css({
-                    top: vertical === 'top' ? 'auto' : position.top + element.outerHeight(),
-                    bottom: vertical === 'top' ? position.top + element.outerHeight() : 'auto',
-                    left: horizontal === 'left' ? (parent === element ? 0 : position.left) : 'auto',
-                    right: horizontal === 'left' ? 'auto' : parent.outerWidth() - element.outerWidth() - (parent === element ? 0 : position.left)
-                });
+                if (!options.cancelWidgetPositioning) {
+                    widget.css({
+                        top: vertical === 'top' ? 'auto' : position.top + element.outerHeight(),
+                        bottom: vertical === 'top' ? position.top + element.outerHeight() : 'auto',
+                        left: horizontal === 'left' ? (parent === element ? 0 : position.left) : 'auto',
+                        right: horizontal === 'left' ? 'auto' : parent.outerWidth() - element.outerWidth() - (parent === element ? 0 : position.left)
+                    });
+                }
             },
 
             notifyEvent = function (e) {
@@ -2246,6 +2248,19 @@
             return picker;
         };
 
+        picker.cancelWidgetPositioning = function (cancelWidgetPositioning) {
+            if (arguments.length === 0) {
+                return options.cancelWidgetPositioning;
+            }
+
+            if (typeof cancelWidgetPositioning !== 'boolean') {
+                throw new TypeError('cancelWidgetPositioning() expects a boolean!');
+            }
+
+            options.cancelWidgetPositioning = cancelWidgetPositioning;
+            return picker;
+        };
+
         // initializing element and component attributes
         if (element.is('input')) {
             input = element;
@@ -2464,6 +2479,8 @@
         disabledTimeIntervals: false,
         disabledHours: false,
         enabledHours: false,
-        viewDate: false
+        viewDate: false,
+        widgetClass: false,
+        cancelWidgetPositioning: false
     };
 }));

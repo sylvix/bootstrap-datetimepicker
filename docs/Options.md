@@ -438,3 +438,16 @@ This will change the `viewDate` without changing or setting the selected date.
 	Default: undefined
 
 Adds specified class to the widget div. You can specify several additional classes divided by spaces.
+
+----------------------
+
+
+### cancelWidgetPositioning
+
+<small>INSERT VERSION HERE</small>
+
+	Default: false
+
+Boolean: true/false. If set to true, cancels all and any top: left: bottom: and right: properties of the widget.
+If widgetPositioning is used, it won't have any effect if this option is enabled.
+

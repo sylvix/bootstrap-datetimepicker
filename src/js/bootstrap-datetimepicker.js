@@ -881,19 +881,27 @@
                 if (component && component.hasClass('btn')) {
                     component.toggleClass('active');
                 }
-                widget.hide();
 
                 $(window).off('resize', place);
                 widget.off('click', '[data-action]');
                 widget.off('mousedown', false);
 
-                widget.remove();
-                widget = false;
+                if (options.fade) {
+                    widget.fadeOut(afterRemove);
+                } else {
+                    widget.hide();
+                    afterRemove();
+                }
 
-                notifyEvent({
-                    type: 'dp.hide',
-                    date: date.clone()
-                });
+                function afterRemove() {
+                    widget.remove();
+                    widget = false;
+                    notifyEvent({
+                        type: 'dp.hide',
+                        date: date.clone()
+                    });
+                }
+
                 return picker;
             },
 
@@ -1182,7 +1190,13 @@
                 if (component && component.hasClass('btn')) {
                     component.toggleClass('active');
                 }
-                widget.show();
+
+                if (options.fade) {
+                    widget.fadeIn();
+                } else {
+                    widget.show();
+                }
+
                 place();
 
                 if (options.focusOnShow && !input.is(':focus')) {
@@ -2261,6 +2275,19 @@
             return picker;
         };
 
+        picker.fade = function (fade) {
+            if (arguments.length === 0) {
+                return options.fade;
+            }
+
+            if (typeof fade !== 'boolean') {
+                throw new TypeError('fade() expects a boolean!');
+            }
+
+            options.fade = fade;
+            return picker;
+        };
+
         // initializing element and component attributes
         if (element.is('input')) {
             input = element;
@@ -2481,6 +2508,7 @@
         enabledHours: false,
         viewDate: false,
         widgetClass: false,
-        cancelWidgetPositioning: false
+        cancelWidgetPositioning: false,
+        fade: false
     };
 }));

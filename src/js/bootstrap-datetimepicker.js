@@ -2255,6 +2255,8 @@
             }
 
             if (typeof widgetClass !== 'string') {
+                console.log('here', widgetClass);
+                console.log(typeof widgetClass);
                 throw new TypeError('widgetClass() expects a string!');
             }
 
@@ -2507,7 +2509,7 @@
         disabledHours: false,
         enabledHours: false,
         viewDate: false,
-        widgetClass: false,
+        widgetClass: '',
         cancelWidgetPositioning: false,
         fade: false
     };

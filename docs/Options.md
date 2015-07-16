@@ -435,7 +435,7 @@ This will change the `viewDate` without changing or setting the selected date.
 
 <small>INSERT VERSION HERE</small>
 
-	Default: undefined
+	Default: ''
 
 Adds specified class to the widget div. You can specify several additional classes divided by spaces.
 

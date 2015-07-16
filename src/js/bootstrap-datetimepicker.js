@@ -6,7 +6,8 @@
  2. Sync this fork with upstream (https://help.github.com/articles/syncing-a-fork/)
  3. Build
  4. Copy minified js to this project
- Or, if upstream has already implemented the "widgetClass" feature, use can just use that version instead.
+ Or, if upstream has already implemented additional functions, use can just use that version instead.
+ See Options.md with "INSERT VERSION HERE" - those are added options.
  =========================================================
  bootstrap-datetimejs
  https://github.com/Eonasdan/bootstrap-datetimepicker
@@ -2255,8 +2256,6 @@
             }
 
             if (typeof widgetClass !== 'string') {
-                console.log('here', widgetClass);
-                console.log(typeof widgetClass);
                 throw new TypeError('widgetClass() expects a string!');
             }
 
